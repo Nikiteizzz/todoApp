@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController(rootViewController: MainViewController())
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.window?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:))))
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         return true

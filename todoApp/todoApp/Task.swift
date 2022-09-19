@@ -8,9 +8,9 @@
 import UIKit
 
 class Task {
-    let taskName: String
-    let priority: String
-    let priorityImage: UIImage
+    var taskName: String
+    var priority: String
+    var priorityImage: UIImage
     
     init(taskName: String, priority: Priority) {
         self.taskName = taskName
@@ -25,5 +25,11 @@ class Task {
             self.priority = "Ну, как-нибудь сделаю"
             self.priorityImage = UIImage(named: "greenCircle") ?? UIImage()
         }
+    }
+    
+    init() {
+        self.taskName = ""
+        self.priority = ""
+        self.priorityImage = UIImage()
     }
 }

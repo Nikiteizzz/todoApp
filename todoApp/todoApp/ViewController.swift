@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tasks: [Task] = [Task(taskName: "Важно", priority: .bigPriority), Task(taskName: "Неважно", priority: .weakPriority)]
+    var tasks: [Task] = []
     
     let tasksTableView: UITableView = {
         let tasksTableView = UITableView()
@@ -22,7 +22,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "ToDo лист"
         setupView()
         addSubviews()
         setupViewConstraints()
@@ -66,7 +65,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func addTask() {
-        
+        let vc = AddTaskViewController()
+        let task = Task()
+        vc.newTask = task
+        vc.addFunc = {(task : Task) in
+            self.tasks.append(task)
+            self.tasksTableView.reloadData() }
+        present(vc, animated: true)
     }
 }
 

@@ -77,7 +77,7 @@ class TasksCellView: UIView {
 
         taskPriorityDescription.topAnchor.constraint(equalTo: taskNameLabel.bottomAnchor, constant: -5).isActive = true
         taskPriorityDescription.leftAnchor.constraint(equalTo: taskPriorityImage.rightAnchor, constant: 10).isActive = true
-        taskPriorityDescription.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        taskPriorityDescription.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
         taskPriorityDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
     }
 }
