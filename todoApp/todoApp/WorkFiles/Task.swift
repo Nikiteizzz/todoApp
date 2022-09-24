@@ -12,6 +12,28 @@ class Task {
     var priority: String
     var priorityImage: UIImage
     
+    init() {
+        self.taskName = ""
+        self.priority = ""
+        self.priorityImage = UIImage()
+    }
+    
+    init(taskFromdata: ToDoTask) {
+        self.taskName = taskFromdata.value(forKey: "title") as! String
+        self.priority = taskFromdata.value(forKey: "priority") as! String
+        switch self.priority {
+        case "Очень важно!":
+            self.priorityImage = UIImage(named: "redCircle") ?? UIImage()
+        case "Ну, не так уж и важно)":
+            self.priorityImage = UIImage(named: "yellowCircle") ?? UIImage()
+        case "Ну, как-нибудь сделаю":
+            self.priorityImage = UIImage(named: "greenCircle") ?? UIImage()
+        default:
+            self.priorityImage = UIImage()
+            print("Error with task priority")
+        }
+    }
+    
     init(taskName: String, priority: Priority) {
         self.taskName = taskName
         switch priority {
@@ -25,11 +47,5 @@ class Task {
             self.priority = "Ну, как-нибудь сделаю"
             self.priorityImage = UIImage(named: "greenCircle") ?? UIImage()
         }
-    }
-    
-    init() {
-        self.taskName = ""
-        self.priority = ""
-        self.priorityImage = UIImage()
     }
 }

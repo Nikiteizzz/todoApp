@@ -9,8 +9,8 @@ import UIKit
 
 class AddTaskViewController: UIViewController {
     
-    var newTask: Task?
-    var addFunc: ((Task) -> Void)?
+    var newTask: ToDoTask!
+    var addFunc: ((ToDoTask) -> Void)?
     
     private let taskNameTextField: UITextField = {
        let taskNameTextField = UITextField()
@@ -52,6 +52,10 @@ class AddTaskViewController: UIViewController {
         addViewConstraints()
     }
     
+    
+}
+
+extension AddTaskViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
     }
@@ -82,12 +86,21 @@ class AddTaskViewController: UIViewController {
     @objc func addTask() {
         if taskNameTextField.text != nil && taskPriorityControl.selectedSegmentIndex != -1 {
             switch taskPriorityControl.selectedSegmentIndex {
-            case 0: newTask = Task(taskName: taskNameTextField.text!, priority: .bigPriority)
-            case 1: newTask = Task(taskName: taskNameTextField.text!, priority: .middlePriority)
-            case 2: newTask = Task(taskName: taskNameTextField.text!, priority: .weakPriority)
+            case 0: do {
+                newTask.title = taskNameTextField.text!
+                newTask.priority = "Очень важно!"
+            }
+            case 1: do {
+                newTask.title = taskNameTextField.text!
+                newTask.priority = "Ну, не так уж и важно)"
+            }
+            case 2: do {
+                newTask.title = taskNameTextField.text!
+                newTask.priority = "Ну, как-нибудь сделаю"
+            }
             default: print("Что-то пошло не по плану")
             }
-            addFunc?(newTask ?? Task())
+            addFunc?(newTask ?? ToDoTask())
             let successAlert = UIAlertController(title: "Успешно!", message: "Задача была добавлена", preferredStyle: .alert)
             let successAlertAction = UIAlertAction(title: "Окей", style: .default) { _ in self.dismiss(animated: true) }
             successAlert.addAction(successAlertAction)
